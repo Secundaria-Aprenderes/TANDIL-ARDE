@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="assets\img\favicon.ico" type="image/x-icon">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Acciones — TANDIL ARDE</title>
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  :root{ --bg-1:#170707; --bg-2:#5b1110; --bg-3:#f07b3a; --accent-yellow:#ffcf7b; --accent-orange:#ff8a3d; --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28)); }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;font-family:Inter,system-ui;color:#fff;background:linear-gradient(180deg,var(--bg-1), var(--bg-2) 45%, var(--bg-3));min-height:100vh}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,204,123,0.03), rgba(255,84,84,0.02));backdrop-filter: blur(12px); animation: floatBG 16s ease-in-out infinite}
+  @keyframes floatBG{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
+  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:12px 22px; margin:0 18px; border-radius:12px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14)); box-shadow: 0 6px 30px rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
+  .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+  .logo { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010; box-shadow: 0 6px 18px rgba(0,0,0,0.45); font-size:14px; }
+  .menu{display:flex; gap:18px; align-items:center}
+  .menu a{color:inherit; text-decoration:none; font-weight:600; position:relative; padding:6px 4px}
+  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px; background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:width .22s}
+  .menu a:hover::after{width:100%}
+  .hamburger{display:none; background:transparent; border:0; color:inherit; font-size:22px}
+  @media (max-width:880px){ .menu{display:none} .hamburger{display:block} }
+
+  .container{max-width:1000px; margin:28px auto; padding:0 18px}
+  h1{font-size:34px;font-weight:800;margin:18px 0 12px}
+  .card{background:var(--card-bg); padding:18px; border-radius:12px; box-shadow:0 12px 36px rgba(0,0,0,0.5); margin-bottom:16px}
+  label{display:block;margin-bottom:8px;font-weight:700}
+  input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.18);color:#fff}
+  button{padding:10px 14px;border-radius:999px;border:0;background:linear-gradient(90deg,var(--accent-yellow),var(--accent-orange));font-weight:800;color:#101010}
+  footer{text-align:center;margin:26px;color:rgba(255,255,255,0.7)}
+
+  
+  /* Estética para el embed de Padlet */
+  .padlet-embed{
+    border-radius:20px; /* ya tenía pero reforzamos */
+    box-shadow: 0 20px 30px rgba(8,8,10,0.55), 0 3px 8px rgba(0,0,0,0.25) inset;
+    transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+    will-change: transform, box-shadow;
+    overflow: hidden; /* asegurar que el iframe respete el radio */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  }
+
+  .padlet-embed iframe{display:block;width:100%;height:100%;border:0;border-radius:18px}
+  /* Play button overlay for videos inside padlet-embed */
+  .padlet-embed{position:relative}
+  .padlet-embed .v-play-large{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:40;border:0;background:linear-gradient(90deg,var(--accent-yellow),var(--accent-orange));color:#101010;padding:18px 22px;border-radius:999px;font-size:22px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.45)}
+  .padlet-embed .v-play-large.hidden{display:none}
+  .padlet-embed video{cursor:pointer}
+
+  body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+
+  /* Fondo lineal simple y fijo: extremadamente estable al zoom */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+  background-attachment: fixed; /* ancla al viewport */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Capa de overlay sutil (opcional) — sin animación y fija.
+   Si no querés overlay, podés borrar este bloque. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Overlay muy sutil para dar profundidad sin moverse */
+  background: linear-gradient(120deg, rgba(255,204,123,0.02), rgba(255,84,84,0.01));
+  backdrop-filter: blur(8px) saturate(1);
+  animation: none;
+  background-attachment: fixed;
+}
+
+  </style>
+</head>
+<body>
+   <!-- NAV (idéntico para todas las páginas) -->
+   <nav>
+    <a class="brand" href="index.html"><img src="assets\img\images-removebg-preview.png" alt="" class="logo"><div style="font-weight:800">TANDIL ARDE</div></a>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="focos.html">Focos</a>
+      <a href="stickers.html">Stickers</a>
+      <a href="fanzines.html">Fanzines</a>
+      <a href="acciones.html">Acciones</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">☰</button>
+  </nav>
+
+  <main class="container">
+    <h1>Acciones</h1>
+
+
+    <section class="card">
+    
+<!-- Video con el mismo formato que el padlet -->
+<div class="padlet-embed" style="background:#000; aspect-ratio:16/9; overflow:hidden;">
+  <video
+    id="actionVideo"
+    preload="metadata"
+    controlsList="nodownload"
+    oncontextmenu="return false;"
+    style="width:100%; height:100%; object-fit:cover; display:block; border-radius:18px;">
+    <source src="assets/VideoDefinitivo.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+  </video>
+  <button class="v-play-large" id="actionPlay">▶</button>
+</div>
+
+    </section>
+    <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:20px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0px;margin:0"><iframe src="https://padlet.com/embed/la1vizlmgrle1vm5" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p><div style="display:flex;align-items:center;justify-content:end;margin:0;height:28px"><a href="https://padlet.com?ref=embed" style="display:block;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none" target="_blank"><div style="display:flex;align-items:center;"><img src="https://padlet.net/embeds/made_with_padlet_2022.png" width="114" height="28" style="padding:0;margin:0;background:0 0;border:none;box-shadow:none" alt="Hecho con Padlet"></div></a></div></div>
+
+    <footer>_TANDIL ARDE_</footer>
+  </main>
+
+  <script>
+  (function(){
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger && hamburger.addEventListener('click', ()=> { menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; });
+
+    const form = document.getElementById('vol-form');
+    form && form.addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('form-msg').style.display = 'block';
+      setTimeout(()=> document.getElementById('form-msg').style.display = 'none', 4000);
+      form.reset();
+    });
+
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.menu a').forEach(a=>{
+      if (a.getAttribute('href') === path) a.style.color = 'var(--accent-yellow)';
+    });
+  })();
+  </script>
+
+  <script>
+  // Play button for action video
+  (function(){
+    const v = document.getElementById('actionVideo');
+    const btn = document.getElementById('actionPlay');
+    if (!v || !btn) return;
+    btn.addEventListener('click', ()=>{
+      if (v.paused) {
+        v.play().catch(()=>{ v.muted = true; v.play().catch(()=>{}); });
+      } else v.pause();
+    });
+    v.addEventListener('play', ()=> btn.classList.add('hidden'))
+    v.addEventListener('pause', ()=> btn.classList.remove('hidden'))
+    // Toggle play/pause when clicking on the video itself
+    v.addEventListener('click', ()=>{
+      if (v.paused) v.play().catch(()=>{ v.muted = true; v.play().catch(()=>{}); });
+      else v.pause();
+    });
+  })();
+  </script>
+</body>
+</html>

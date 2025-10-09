@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="assets\img\favicon.ico" type="image/x-icon">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TANDIL ARDE</title>
+
+  <!-- Inline CSS (consistente en todas las páginas) -->
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  :root{
+    --bg-1:#1f0b0b; --bg-2:#4a1410; --bg-3:#dd6b2f;
+    --accent-yellow:#ffcf7b; --accent-orange:#ff8a3d; --accent:#ffb86b;
+    --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28));
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+/* Reemplaza las reglas body y body::after por estas */
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  
+  /* Page layout: column so main can expand and footer stays at bottom */
+  display: flex;
+  flex-direction: column;
+
+  /* Fondo lineal simple y fijo: extremadamente estable al zoom */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+  background-attachment: fixed; /* ancla al viewport */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  
+}
+
+/* Capa de overlay sutil (opcional) — sin animación y fija.
+   Si no querés overlay, podés borrar este bloque. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Overlay muy sutil para dar profundidad sin moverse */
+  background: linear-gradient(120deg, rgba(255,204,123,0.02), rgba(255,84,84,0.01));
+  backdrop-filter: blur(8px) saturate(1);
+  animation: none;
+  background-attachment: fixed;
+}
+
+  /* NAV (IDENTICO EN TODAS LAS PAGINAS) */
+  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center;
+      padding:12px 22px; margin:0 18px; border-radius:12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14));
+      box-shadow: 0 6px 30px rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
+  .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+  .logo { width:42px; height:42px; border-radius:10px;
+          display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010;}
+  .menu{display:flex; gap:18px; align-items:center}
+  .menu a{color:inherit; text-decoration:none; font-weight:600; position:relative; padding:6px 4px}
+  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px;
+                 background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:width .22s}
+  .menu a:hover::after{width:100%}
+
+  .hamburger{display:none; background:transparent; border:0; color:inherit; font-size:22px}
+  @media (max-width:880px){ .menu{display:none} .hamburger{display:block} }
+
+  .container{max-width:1100px; margin:0 auto; padding:28px 18px; box-sizing:border-box}
+  /* Allow main container to grow so grid3 can stretch vertically.
+    Use pure flexbox behavior (no hardcoded min-height) so the layout adapts
+    tanto a pantalla completa como a ventanas redimensionadas. */
+  main.container { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+  /* Hero */
+  .hero{display:grid; grid-template-columns:1fr 440px; gap:28px; align-items:center; margin-top:8px; margin-bottom: 18px;}
+  .hero-left{padding:28px}
+  .kicker{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.04); font-weight:700; color:var(--accent-yellow); letter-spacing:.06em}
+  h1{font-size:44px; line-height:1.02; margin:18px 0 12px; font-weight:800; text-shadow: 0 16px 40px rgba(0,0,0,0.6)}
+  .lead{color:rgba(255,255,255,0.9); font-size:18px; max-width:64ch; margin:0}
+  .cta-row{margin-top:20px; display:flex; gap:12px; align-items:center}
+  .btn-primary{padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:800;
+              background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); color:#101010; box-shadow: 0 12px 30px rgba(255,120,60,0.12)}
+  .btn-secondary{padding:10px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.06); text-decoration:none; color:inherit}
+
+  .hero-card{background:var(--card-bg); border-radius:16px; padding:18px; box-shadow: 0 14px 40px rgba(0,0,0,0.5);}
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; flex:1; align-content:stretch; padding-bottom:72px; min-height:0; margin-top:60px}
+  /* removed automatic push so we can control spacing between grid3 and footer */
+  .card{background:var(--card-bg); padding:18px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+    /* Hover: tilt slightly to the left with elegant shadow */
+    .card{transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s cubic-bezier(.2,.9,.2,1); transform-origin: right center}
+    .card:hover{transform: perspective(900px) rotateY(6deg) translateX(-6px) translateY(-6px);}
+  /* Limitar la altura y truncar el texto dentro de las tarjetas */
+  /* Evitamos que las cards crezcan más de ~50px adicionales (ajustable) */
+  .grid3 .card{max-height:160px;overflow:hidden}
+  .grid3 .card p{display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; text-overflow:ellipsis; line-clamp:3}
+  /* Overlay modal para tarjetas */
+  .card-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.75);z-index:200;opacity:0;pointer-events:none;transition:opacity .18s}
+  .card-overlay.open{opacity:1;pointer-events:auto}
+  .card-overlay .overlay-panel{background:var(--card-bg);max-width:860px;width:92%;padding:20px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.7);transform:translateY(10px);transition:transform .18s}
+  .card-overlay.open .overlay-panel{transform:translateY(0)}
+  .card-overlay .close-btn{position:absolute;top:18px;right:20px;background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer}
+  .card-overlay h3{margin-top:0}
+
+  @media (max-width:1024px){ .hero{grid-template-columns:1fr; } .grid3{grid-template-columns:1fr} h1{font-size:34px} }
+
+  /* Adjust spacing based on viewport height to adapt between fullscreen and windowed modes */
+  @media (max-height:700px){
+    /* Small/tall windows: reduce paddings so content fits without excessive scrolling */
+    .hero{margin-bottom:12px}
+    .grid3{padding-bottom:28px}
+  }
+
+  @media (min-height:1000px){
+    /* Very tall screens: allow more breathing room */
+    .hero{margin-bottom:48px}
+    .grid3{padding-bottom:110px}
+  }
+
+  footer{margin:0; text-align:center; color:rgba(255,255,255,0.7); padding: 0;}
+
+  /* Fallback spacer for very small viewports: ensures footer remains pushed down
+    when content is short. The spacer is optional but harmless. */
+  .page-spacer{height:var(--spacer,1px); flex-shrink:0}
+  </style>
+</head>
+<body>
+  <!-- NAV (idéntico para todas las páginas) -->
+  <nav>
+    <a class="brand" href="index.html"><img src="assets\img\images-removebg-preview.png" alt="" class="logo"><div style="font-weight:800">TANDIL ARDE</div></a>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="focos.html">Focos</a>
+      <a href="stickers.html">Stickers</a>
+      <a href="fanzines.html">Fanzines</a>
+      <a href="acciones.html">Acciones</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">☰</button>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="kicker">Proyecto comunitario</div>
+        <h1>INCENDIOS EN TANDIL</h1>
+        <p class="lead">Proyecto para concientizar y actuar sobre los incendios en Tandil.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="focos.html">Ver focos y datos</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Últimas acciones">
+        <h3 style="margin:0 0 8px">Últimas acciones</h3>
+        <p style="margin:0 0 12px; color:rgba(255,255,255,0.85)">Distribución de stickers en barrios • Talleres de prevención • Relevamientos de riesgo</p>
+        <div style="display:flex; gap:8px; margin-top:12px">
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid3" aria-label="Secciones">
+      <div class="card">
+        <h4 style="margin-top:0">Quiénes somos</h4>
+        <p style="margin:0; color:rgba(255,255,255,0.9)">Somos estudiantes de 4to año de secundaria del colegio Aprenderes de Tandil, comprometidos con el ambiente y con nuestra ciudad. Buscamos que desde el aula, trabajando en conjunto con la comunidad, podamos generar un verdadero cambio que nos permita lograr prevenir desde ahora y para siempre la aparición de nuevos incendios forestales.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0">El proyecto</h4>
+        <p style="margin:0; color:rgba(255,255,255,0.9)">Desde las materias de <i>Producción y Análisis de la Imagen</i> y <i>Nuevas Tecnologías de la Información y la Conectividad</i> pensamos este proyecto como una forma de intervenir Tandil: combinar información, arte y acción en los tres focos de incendio más frecuentes.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin-top:0">Por qué importa</h4>
+        <p style="margin:0; color:rgba(255,255,255,0.9)">Los incendios amenazan la vida, la naturaleza y nuestras sierras. Este proyecto busca recordar que cuidar Tandil es tarea de todos.</p>
+      </div>
+    </section>
+
+    <footer>_TANDIL ARDE_</footer>
+  </main>
+
+  <!-- Overlay modal para tarjetas -->
+  <div class="card-overlay" id="cardOverlay" aria-hidden="true" role="dialog" aria-label="Tarjeta ampliada">
+    <div class="overlay-panel" id="overlayPanel">
+      <button class="close-btn" id="overlayClose" aria-label="Cerrar">✕</button>
+      <h3 id="overlayTitle"></h3>
+      <div id="overlayBody"></div>
+    </div>
+  </div>
+
+  <!-- JS al final (misma lógica en todas las páginas) -->
+  <script>
+  (function(){
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger && hamburger.addEventListener('click', ()=> {
+      menu.style.display = (menu.style.display === 'flex' || menu.style.display === '') ? 'none' : 'flex';
+    });
+
+    // activa link del menu
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.menu a').forEach(a=>{
+      if (a.getAttribute('href') === path) a.style.color = 'var(--accent-yellow)';
+    });
+  })();
+  </script>
+
+  <script>
+  // Overlay para ampliar tarjetas de .grid3
+  (function(){
+    const overlay = document.getElementById('cardOverlay');
+    const overlayTitle = document.getElementById('overlayTitle');
+    const overlayBody = document.getElementById('overlayBody');
+    const overlayClose = document.getElementById('overlayClose');
+
+    if (!overlay) return;
+
+    document.querySelectorAll('.grid3 .card').forEach(card=>{
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', ()=>{
+        const title = card.querySelector('h4') ? card.querySelector('h4').innerText : '';
+        const body = card.querySelector('p') ? card.querySelector('p').innerHTML : '';
+        overlayTitle.textContent = title;
+        overlayBody.innerHTML = body;
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        overlayClose.focus();
+      });
+    });
+
+    function close(){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      overlayTitle.textContent = '';
+      overlayBody.innerHTML = '';
+    }
+
+    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) close(); });
+    overlayClose.addEventListener('click', close);
+    window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+  })();
+  </script>
+</body>
+</html>

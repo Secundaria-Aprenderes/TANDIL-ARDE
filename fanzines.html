@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="assets\img\favicon.ico" type="image/x-icon">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fanzines — TANDIL ARDE</title>
+
+  <!-- Swiper CSS (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  :root{ --bg-1:#180909; --bg-2:#5f1514; --bg-3:#eb7a37; --accent-yellow:#ffcf7b; --accent-orange:#ff8a3d; --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28)); }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;font-family:Inter,system-ui;color:#fff;background:linear-gradient(180deg,var(--bg-1), var(--bg-2) 45%, var(--bg-3));min-height:100vh}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,204,123,0.03), rgba(255,84,84,0.02));backdrop-filter: blur(12px); animation: floatBG 16s ease-in-out infinite}
+  @keyframes floatBG{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
+  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:12px 22px; margin:0 18px; border-radius:12px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14)); box-shadow: 0 6px 30px rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
+  .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+  .logo { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010; box-shadow: 0 6px 18px rgba(0,0,0,0.45); font-size:14px; }
+  .menu{display:flex; gap:18px; align-items:center}
+  .menu a{color:inherit; text-decoration:none; font-weight:600; position:relative; padding:6px 4px}
+  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px; background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:width .22s}
+  .menu a:hover::after{width:100%}
+  .hamburger{display:none; background:transparent; border:0; color:inherit; font-size:22px}
+  @media (max-width:880px){ .menu{display:none} .hamburger{display:block} }
+
+  .container{max-width:1100px; margin:28px auto; padding:0 18px}
+  h1{font-size:34px;font-weight:800;margin:18px 0 12px}
+  .muted{color:rgba(255,255,255,0.9)}
+  .swiper{width:100%; padding:18px 0}
+  /* Make the slide container visually subtle and center its content */
+  .swiper-slide{display:flex;align-items:center;justify-content:center;background:transparent;padding:6px;border-radius:10px}
+  /* Keep images centered and cover the available area without heavy framing */
+  .swiper-slide img{width:100%;max-width:720px;height:360px;object-fit:contain;object-position:center center;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.28)}
+  .carousel-title{margin:18px 0 8px}
+  footer{text-align:center;margin:24px;color:rgba(255,255,255,0.7)}
+
+  /* Overlay para fanzines */
+  .fz-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);z-index:300;opacity:0;pointer-events:none;transition:opacity .18s}
+  .fz-overlay.open{opacity:1;pointer-events:auto}
+  /* Limit the overlay panel so the image never fills the entire viewport (explicit VW/VH) */
+  .fz-overlay-content{width:70vw; height:70vh; max-width:960px; max-height:800px; display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;overflow:hidden}
+  /* Slight entrance scale when opening (handled via open class) */
+  .fz-overlay.open .fz-overlay-content{transform:scale(1); transition:transform .18s}
+  /* Image fully contained inside the panel: will not overflow top/bottom */
+  .fz-overlay-content img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center center;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,0.55)}
+  @media (max-width:640px){
+    .fz-overlay-content{padding:12px}
+    .fz-overlay-content img{max-width:calc(100% - 24px);max-height:calc(100% - 24px);border-radius:6px}
+  }
+
+  body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+
+  /* Fondo lineal simple y fijo: extremadamente estable al zoom */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+  background-attachment: fixed; /* ancla al viewport */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Capa de overlay sutil (opcional) — sin animación y fija.
+   Si no querés overlay, podés borrar este bloque. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Overlay muy sutil para dar profundidad sin moverse */
+  background: linear-gradient(120deg, rgba(255,204,123,0.02), rgba(255,84,84,0.01));
+  backdrop-filter: blur(8px) saturate(1);
+  animation: none;
+  background-attachment: fixed;
+}
+
+  </style>
+</head>
+<body>
+    <!-- NAV (idéntico para todas las páginas) -->
+    <nav>
+      <a class="brand" href="index.html"><img src="assets\img\images-removebg-preview.png" alt="" class="logo"><div style="font-weight:800">TANDIL ARDE</div></a>
+      <div class="menu" id="menu">
+        <a href="index.html">Inicio</a>
+        <a href="focos.html">Focos</a>
+        <a href="stickers.html">Stickers</a>
+        <a href="fanzines.html">Fanzines</a>
+        <a href="acciones.html">Acciones</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">☰</button>
+    </nav>
+
+  <main class="container">
+    <h1>Fanzines</h1>
+    <p class="muted">Con el inigualable sentido retórico de un fanzine hemos decidido ilustrar las urgentes problemáticas ambientales de la ciudad de Tandil a causa de masivos incendios forestales.</p>
+
+    <!-- Carousel 1 -->
+    <div class="carousel-title"><h3 style="margin:0"></h3></div>
+    <div class="swiper mySwiper1">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets\Fanzines\WhatsApp Image 2025-10-08 at 11.49.52.jpeg" alt="fz2-1"></div>
+        <div class="swiper-slide"><img src="assets\Fanzines\WhatsApp Image 2025-10-08 at 11.49.52 (1).jpeg" alt="fz2-2"></div>
+        <div class="swiper-slide"><img src="assets\Fanzines\WhatsApp Image 2025-10-08 at 11.49.52 (2).jpeg" alt="fz2-3"></div>
+        <div class="swiper-slide"><img src="assets\Fanzines\WhatsApp Image 2025-10-08 at 11.49.52 (3).jpeg" alt="fz2-4"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Carousel 2 -->
+    <div class="carousel-title"><h3 style="margin:0"></h3></div>
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51.jpeg" alt="fz2-1"></div>
+        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (1).jpeg" alt="fz2-2"></div>
+        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (2).jpeg" alt="fz2-3"></div>
+        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (3).jpeg" alt="fz2-4"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <footer>_TANDIL ARDE_</footer>
+  </main>
+
+  <!-- Overlay para ampliar fanzines (cerrar tocando fuera o Escape) -->
+  <div class="fz-overlay" id="fzOverlay" aria-hidden="true" role="dialog" aria-label="Fanzine ampliado">
+    <div class="fz-overlay-content" id="fzOverlayContent">
+      <img src="" alt="Fanzine ampliado" id="fzOverlayImage">
+    </div>
+  </div>
+
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+  <script>
+  (function(){
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger && hamburger.addEventListener('click', ()=> { menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; });
+
+    // initialize swipers
+    new Swiper('.mySwiper1', {
+      loop:true, slidesPerView:1, spaceBetween:18,
+      pagination:{ el: '.mySwiper1 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper1 .swiper-button-next', prevEl: '.mySwiper1 .swiper-button-prev' }
+    });
+    new Swiper('.mySwiper2', {
+      loop:true, slidesPerView:1, spaceBetween:18,
+      pagination:{ el: '.mySwiper2 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper2 .swiper-button-next', prevEl: '.mySwiper2 .swiper-button-prev' }
+    });
+
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.menu a').forEach(a=>{
+      if (a.getAttribute('href') === path) a.style.color = 'var(--accent-yellow)';
+    });
+  })();
+  </script>
+  <script>
+  // Overlay para ver fanzines ampliados
+  (function(){
+    const overlay = document.getElementById('fzOverlay');
+    const overlayImg = document.getElementById('fzOverlayImage');
+    if (!overlay || !overlayImg) return;
+
+    document.querySelectorAll('.swiper-slide img').forEach(img=>{
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', ()=>{
+        overlayImg.src = img.src;
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.src=''; document.body.style.overflow=''; } });
+    window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && overlay.classList.contains('open')) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.src=''; document.body.style.overflow=''; } });
+  })();
+  </script>
+</body>
+</html>
