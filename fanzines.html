@@ -134,9 +134,22 @@ body::after {
       <div class="swiper-wrapper">
         <!-- NOTA: los archivos solicitados aún no existen en assets/Fanzines según el workspace actual.
              Cuando subas los archivos con estos nombres, se mostrarán automáticamente aquí. -->
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.39.png" alt="fz3-1"></div>
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.35.png" alt="fz3-2"></div>
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.28.png" alt="fz3-3"></div>
+  <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.39.png" alt="fz3-1"></div>
+  <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.35.png" alt="fz3-2"></div>
+  <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.28.png" alt="fz3-3"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Carousel 4: nuevas imágenes (09:01) -->
+    <div class="carousel-title"><h3 style="margin:0"></h3></div>
+    <div class="swiper mySwiper4">
+      <div class="swiper-wrapper">
+        <!-- NOTA: los archivos pueden no existir aún en assets/Fanzines. Subirlos con estos nombres para mostrarlos. -->
+  <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp_Image_2025-10-13_at_09.01.06.png" alt="fz4-1"></div>
+  <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp_Image_2025-10-13_at_09.01.05.png" alt="fz4-2"></div>
       </div>
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
@@ -178,6 +191,12 @@ body::after {
       loop:true, slidesPerView:1, spaceBetween:18,
       pagination:{ el: '.mySwiper3 .swiper-pagination', clickable: true },
       navigation:{ nextEl: '.mySwiper3 .swiper-button-next', prevEl: '.mySwiper3 .swiper-button-prev' }
+    });
+    // initialize fourth swiper (newly added)
+    new Swiper('.mySwiper4', {
+      loop:true, slidesPerView:1, spaceBetween:18,
+      pagination:{ el: '.mySwiper4 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper4 .swiper-button-next', prevEl: '.mySwiper4 .swiper-button-prev' }
     });
 
     const path = location.pathname.split('/').pop() || 'index.html';
