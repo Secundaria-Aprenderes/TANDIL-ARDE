@@ -13,14 +13,14 @@
   :root{ --bg-1:#180909; --bg-2:#5f1514; --bg-3:#eb7a37; --accent-yellow:#ffcf7b; --accent-orange:#ff8a3d; --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28)); }
   *{box-sizing:border-box} html,body{height:100%}
   body{margin:0;font-family:Inter,system-ui;color:#fff;background:linear-gradient(180deg,var(--bg-1), var(--bg-2) 45%, var(--bg-3));min-height:100vh}
-  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,204,123,0.03), rgba(255,84,84,0.02));backdrop-filter: blur(12px); animation: [...]
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,204,123,0.03), rgba(255,84,84,0.02));backdrop-filter: blur(12px); animation: floatBG 16s ease-in-out infinite}
   @keyframes floatBG{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
-  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:12px 22px; margin:0 18px; border-radius:12px; background: linear-gradient(180deg, [...]
+  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:12px 22px; margin:0 18px; border-radius:12px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14)); box-shadow: 0 6px 30px rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
   .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
-  .logo { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010; box-shadow: 0 6px 18px rgba(0,0,0,0.45); font-size:14px[...]
+  .logo { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010; box-shadow: 0 6px 18px rgba(0,0,0,0.45); font-size:14px; }
   .menu{display:flex; gap:18px; align-items:center}
   .menu a{color:inherit; text-decoration:none; font-weight:600; position:relative; padding:6px 4px}
-  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px; background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:[...]
+  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px; background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:width .22s}
   .menu a:hover::after{width:100%}
   .hamburger{display:none; background:transparent; border:0; color:inherit; font-size:22px}
   @media (max-width:880px){ .menu{display:none} .hamburger{display:block} }
@@ -44,7 +44,7 @@
   /* Slight entrance scale when opening (handled via open class) */
   .fz-overlay.open .fz-overlay-content{transform:scale(1); transition:transform .18s}
   /* Image fully contained inside the panel: will not overflow top/bottom */
-  .fz-overlay-content img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center center;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,0.55)[...]
+  .fz-overlay-content img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center center;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,0.55)}
   @media (max-width:640px){
     .fz-overlay-content{padding:12px}
     .fz-overlay-content img{max-width:calc(100% - 24px);max-height:calc(100% - 24px);border-radius:6px}
@@ -98,7 +98,7 @@ body::after {
 
   <main class="container">
     <h1>Fanzines</h1>
-    <p class="muted">Con el inigualable sentido retórico de un fanzine hemos decidido ilustrar las urgentes problemáticas ambientales de la ciudad de Tandil a causa de masivos incendios forestales.<[...]
+    <p class="muted">Con el inigualable sentido retórico de un fanzine hemos decidido ilustrar las urgentes problemáticas ambientales de la ciudad de Tandil a causa de masivos incendios forestales.</p>
 
     <!-- Carousel 1 -->
     <div class="carousel-title"><h3 style="margin:0"></h3></div>
@@ -122,19 +122,6 @@ body::after {
         <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (1).jpeg" alt="fz2-2"></div>
         <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (2).jpeg" alt="fz2-3"></div>
         <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-08 at 11.49.51 (3).jpeg" alt="fz2-4"></div>
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-
-    <!-- Carousel 3 (NUEVO) -->
-    <div class="carousel-title"><h3 style="margin:0"></h3></div>
-    <div class="swiper mySwiper3">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.39.jpeg" alt="fz3-1"></div>
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.35.jpeg" alt="fz3-2"></div>
-        <div class="swiper-slide"><img src="assets/Fanzines/WhatsApp Image 2025-10-13 at 08.08.28.jpeg" alt="fz3-3"></div>
       </div>
       <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
@@ -171,12 +158,6 @@ body::after {
       pagination:{ el: '.mySwiper2 .swiper-pagination', clickable: true },
       navigation:{ nextEl: '.mySwiper2 .swiper-button-next', prevEl: '.mySwiper2 .swiper-button-prev' }
     });
-    // NUEVO: inicializar el tercer Swiper
-    new Swiper('.mySwiper3', {
-      loop:true, slidesPerView:1, spaceBetween:18,
-      pagination:{ el: '.mySwiper3 .swiper-pagination', clickable: true },
-      navigation:{ nextEl: '.mySwiper3 .swiper-button-next', prevEl: '.mySwiper3 .swiper-button-prev' }
-    });
 
     const path = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.menu a').forEach(a=>{
@@ -201,10 +182,9 @@ body::after {
       });
     });
 
-    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.src=''; document.body.style.overflow='[...]
-    window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && overlay.classList.contains('open')) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.s[...]
+    overlay.addEventListener('click', (e)=>{ if (e.target === overlay) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.src=''; document.body.style.overflow=''; } });
+    window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && overlay.classList.contains('open')) { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); overlayImg.src=''; document.body.style.overflow=''; } });
   })();
   </script>
 </body>
 </html>
-
