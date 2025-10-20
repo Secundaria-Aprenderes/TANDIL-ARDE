@@ -285,14 +285,25 @@ body::after {
       navigation:{ nextEl: '.mySwiper6 .swiper-button-next', prevEl: '.mySwiper6 .swiper-button-prev' }
     });
 
+        // initialize seventh swiper 
+    new Swiper('.mySwiper7', {
+      loop:true,
+      slidesPerView:1,
+      spaceBetween:18,
+      pagination:{ el: '.mySwiper7 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper7 .swiper-button-next', prevEl: '.mySwiper7 .swiper-button-prev' }
+    });
+    
     // initialize eighth swiper (benja)
-new Swiper('.mySwiper8', {
-  loop:true,
-  slidesPerView:1,
-  spaceBetween:18,
-  pagination:{ el: '.mySwiper8 .swiper-pagination', clickable: true },
-  navigation:{ nextEl: '.mySwiper8 .swiper-button-next', prevEl: '.mySwiper8 .swiper-button-prev' }
-});
+    new Swiper('.mySwiper8', {
+      loop:true,
+      slidesPerView:1,
+      spaceBetween:18,
+      pagination:{ el: '.mySwiper8 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper8 .swiper-button-next', prevEl: '.mySwiper8 .swiper-button-prev' }
+    });
+
+    
 
     const path = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.menu a').forEach(a=>{
@@ -323,6 +334,7 @@ new Swiper('.mySwiper8', {
   </script>
 </body>
 </html>
+
 
 
 
