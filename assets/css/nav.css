@@ -1,0 +1,13 @@
+/* Estilos para el nav que permite mostrar/ocultar con scroll */
+nav {
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .28s;
+  will-change: transform, opacity;
+  backdrop-filter: blur(6px);
+}
+
+/* Clase que oculta el nav (lo desplaza hacia arriba y lo hace no interactivo) */
+nav.nav-hidden {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
