@@ -285,6 +285,15 @@ body::after {
       navigation:{ nextEl: '.mySwiper6 .swiper-button-next', prevEl: '.mySwiper6 .swiper-button-prev' }
     });
 
+    // initialize eighth swiper (benja)
+new Swiper('.mySwiper8', {
+  loop:true,
+  slidesPerView:1,
+  spaceBetween:18,
+  pagination:{ el: '.mySwiper8 .swiper-pagination', clickable: true },
+  navigation:{ nextEl: '.mySwiper8 .swiper-button-next', prevEl: '.mySwiper8 .swiper-button-prev' }
+});
+
     const path = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.menu a').forEach(a=>{
       if (a.getAttribute('href') === path) a.style.color = 'var(--accent-yellow)';
@@ -314,6 +323,7 @@ body::after {
   </script>
 </body>
 </html>
+
 
 
 
