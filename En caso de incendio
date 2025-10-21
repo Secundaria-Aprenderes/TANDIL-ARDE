@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <link rel="shortcut icon" href="assets\img\favicon.ico" type="image/x-icon">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Focos -- TANDIL ARDE</title>
+<link rel="stylesheet" href="assets/css/nav.css">
+  <!-- Usamos el mismo CSS inline que index para mantener EXACTO el menú y estilo -->
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  :root{ --bg-1:#170707; --bg-2:#601311; --bg-3:#d97b36; --accent-yellow:#ffcf7b; --accent-orange:#ff8a3d; --accent:#ffb86b; --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28)); --radius:14px; }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;font-family:Inter,system-ui;color:#fff;background:linear-gradient(180deg,var(--bg-1), var(--bg-2) 45%, var(--bg-3));min-height:100vh}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg, rgba(255,204,123,0.03), rgba(255,84,84,0.02));backdrop-filter: blur(12px); animation: floatBG 16s ease-in-out infinite}
+  @keyframes floatBG{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
+  nav{position:sticky; top:14px; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:12px 22px; margin:0 18px; border-radius:12px; background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14)); box-shadow: 0 6px 30px rgba(0,0,0,0.55); backdrop-filter: blur(6px);}
+  .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit}
+  .logo { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#101010; box-shadow: 0 6px 18px rgba(0,0,0,0.45); font-size:14px; }
+  .menu{display:flex; gap:18px; align-items:center}
+  .menu a{color:inherit; text-decoration:none; font-weight:600; position:relative; padding:6px 4px}
+  .menu a::after{content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:999px; background: linear-gradient(90deg,var(--accent-yellow),var(--accent-orange)); transition:width .22s}
+  .menu a:hover::after{width:100%}
+  .hamburger{display:none; background:transparent; border:0; color:inherit; font-size:22px}
+  @media (max-width:880px){ .menu{display:none} .hamburger{display:block} }
+  .container{max-width:1100px;margin:28px auto;padding:0 18px}
+  h1{font-size:34px;font-weight:800;margin:18px 0 12px}
+  .card{background:var(--card-bg); padding:18px; border-radius:12px; box-shadow:0 12px 36px rgba(0,0,0,0.5); margin-bottom:16px}
+  table{width:100%; border-collapse:collapse; color:rgba(255,255,255,0.95)}
+  th,td{padding:10px; border-bottom:1px solid rgba(255,255,255,0.04); text-align:left}
+  footer{text-align:center;margin:40px 0;color:rgba(255,255,255,0.7)}
+
+  body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+
+  /* Fondo lineal simple y fijo: extremadamente estable al zoom */
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+  background-attachment: fixed; /* ancla al viewport */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Capa de overlay sutil (opcional) — sin animación y fija.
+   Si no querés overlay, podés borrar este bloque. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Overlay muy sutil para dar profundidad sin moverse */
+  background: linear-gradient(120deg, rgba(255,204,123,0.02), rgba(255,84,84,0.01));
+  backdrop-filter: blur(8px) saturate(1);
+  animation: none;
+  background-attachment: fixed;
+}
+
+.Infografia {
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+}
+  </style>
+  <script src="assets/js/nav-behavior.js" defer></script>
+</head>
+<body>
+  <!-- NAV (idéntico para todas las páginas) -->
+<nav id="topNav" data-threshold="10" data-hide-offset="80" aria-label="Main navigation">
+    <a class="brand" href="index.html"><img src="assets\img\images-removebg-preview.png" alt="" class="logo"><div style="font-weight:800">TANDIL ARDE</div></a>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="focos.html">Focos</a>
+      <a href="stickers.html">Stickers</a>
+      <a href="fanzines.html">Fanzines</a>
+      <a href="acciones.html">Acciones</a>
+      <a href="prevención.html">Prevención</a>      
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">☰</button>
+</nav>
+  
+
+  <main class="container">
+
+    <img src="assets/Prevencion/Prevencion Incendios.png" alt="" class="Infografia">
+
+
+    <footer>_TANDIL ARDE_</footer>
+  </main>
+
+  <script>
+  (function(){
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger && hamburger.addEventListener('click', ()=> { menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex'; });
+
+    const path = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.menu a').forEach(a=>{
+      if (a.getAttribute('href') === path) a.style.color = 'var(--accent-yellow)';
+    });
+  })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
