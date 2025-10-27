@@ -254,7 +254,23 @@ body::after {
   <div class="swiper-button-next"></div>
 </div>
 
+<div class="carousel-title"></div>
+<div class="swiper mySwiper9">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img src="assets/Fanzines/1.jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/2.jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/3.jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/4jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/5.jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/6.jpeg"></div>
+    <div class="swiper-slide"><img src="assets/Fanzines/7.jpeg"></div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
 
+    
     <footer>_TANDIL ARDE_</footer>
   </main>
 
@@ -328,6 +344,14 @@ body::after {
       navigation:{ nextEl: '.mySwiper8 .swiper-button-next', prevEl: '.mySwiper8 .swiper-button-prev' }
     });
 
+        new Swiper('.mySwiper9', {
+      loop:true,
+      slidesPerView:1,
+      spaceBetween:18,
+      pagination:{ el: '.mySwiper9 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper9 .swiper-button-next', prevEl: '.mySwiper9 .swiper-button-prev' }
+    });
+
     
 
     const path = location.pathname.split('/').pop() || 'index.html';
@@ -359,6 +383,7 @@ body::after {
   </script>
 </body>
 </html>
+
 
 
 
