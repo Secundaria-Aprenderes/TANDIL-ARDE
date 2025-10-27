@@ -372,6 +372,14 @@ body::after {
       navigation:{ nextEl: '.mySwiper9 .swiper-button-next', prevEl: '.mySwiper9 .swiper-button-prev' }
     });
 
+            new Swiper('.mySwiper10', {
+      loop:true,
+      slidesPerView:1,
+      spaceBetween:18,
+      pagination:{ el: '.mySwiper10 .swiper-pagination', clickable: true },
+      navigation:{ nextEl: '.mySwiper10 .swiper-button-next', prevEl: '.mySwiper10 .swiper-button-prev' }
+    });
+
     
 
     const path = location.pathname.split('/').pop() || 'index.html';
@@ -403,6 +411,7 @@ body::after {
   </script>
 </body>
 </html>
+
 
 
 
